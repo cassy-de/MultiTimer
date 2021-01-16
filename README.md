@@ -46,15 +46,15 @@ sudo i2cdetect -y 1
 
 Hierbei wird dann die Adresse 0x20 als AKTIV gekennzeichnet
 
-Weitergehende LCD-Tests:
+# Weitergehende LCD-Tests:
 
-# nun die lib für das LCD installieren:
+nun die lib für das LCD installieren:
 
 <code>
 sudo pip3 install RPLCD
 </code>
 
-# nun Testscript ausführen:
+nun Testscript ausführen:
 
 <code>
 rplcd-tests i2c testsuite expander=PCF8574 addr=0x20 port=1 cols=20 rows=4
@@ -66,6 +66,6 @@ rplcd-tests i2c testsuite expander=PCF8574 addr=0x20 port=1 cols=20 rows=4
   <img src="MT-LCD.png">
 </p>
 
-
+# mt.py : das Script testen, ergänzen und ausführen:
 
 Nachdem diese Test alle durchlaufen wurden, kann das eigentliche Script ausgeführt werden. Diese enthält noch keine Hardware-Ausgabe, diese kann somit spezifisch auf die Erfordernisse ergänzt und angepasst werden. 

@@ -68,4 +68,11 @@ rplcd-tests i2c testsuite expander=PCF8574 addr=0x20 port=1 cols=20 rows=4
 
 # mt.py : das Script testen, ergänzen und ausführen:
 
-Nachdem diese Test alle durchlaufen wurden, kann das eigentliche Script ausgeführt werden. Diese enthält noch keine Hardware-Ausgabe, diese kann somit spezifisch auf die Erfordernisse ergänzt und angepasst werden. 
+Nachdem diese Test alle durchlaufen wurden, kann das eigentliche Script ausgeführt werden. Die Hardware-Ausgabe erfolt mit der Library gpiozero, diese kann somit spezifisch auf die Erfordernisse ergänzt und angepasst werden. Zum Einsatz ist hier ein 16-Kanal-Relaismodul gekommen, wovon die ersten neun Kanäle genutzt werden.
+
+<p align="center">
+  <img src="rel.png">
+</p>
+
+-----------------------------------------------
+

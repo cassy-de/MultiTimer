@@ -74,15 +74,18 @@ while True:
             #if event.key == pygame.K_KP_DIVIDE:
             #    lcd.close(clear=True) 
             #    pygame.quit(); #sys.exit() if sys is imported
-            #if event.key == pygame.K_KP_MULTIPLY:
-            #    # Editierphase aktiv, alle Timer selekt. und default
-            #    t1s=True; t2s=True; t3s=True; t4s=True; t5s=True 
-            #    t6s=True; t7s=True; t8s=True; t9s=True 
-            #    t1h=tdh; t2h=tdh; t3h=tdh; t4h=tdh; t5h=tdh 
-            #    t6h=tdh; t7h=tdh; t8h=tdh; t9h=tdh; tth=tdh 
-            #    t1m=tdm; t2m=tdm; t3m=tdm; t4m=tdm; t5m=tdm 
-            #    t6m=tdm; t7m=tdm; t8m=tdm; t9m=tdm; ttm=tdm 
-            #    timeoutc = timeoutd   # TimeOut-Counter auf Default setzen
+            if event.key == pygame.K_KP_MULTIPLY:
+            #    # Timer auf unendlich setzen, Togglefunktion mit der *-Taste
+                if t1s == True: t1inf = not t1inf; t1h =0; t1m =0
+                if t2s == True: t2inf = not t2inf; t2h =0; t2m =0
+                if t3s == True: t3inf = not t3inf; t3h =0; t3m =0
+                if t4s == True: t4inf = not t4inf; t4h =0; t4m =0
+                if t5s == True: t5inf = not t5inf; t5h =0; t5m =0
+                if t6s == True: t6inf = not t6inf; t6h =0; t6m =0
+                if t7s == True: t7inf = not t7inf; t7h =0; t7m =0
+                if t8s == True: t8inf = not t8inf; t8h =0; t8m =0
+                if t9s == True: t9inf = not t9inf; t9h =0; t9m =0
+
             if event.key == pygame.K_KP1:
                 t1s = not t1s
                 timeoutc = timeoutd
@@ -151,18 +154,6 @@ while True:
                 timeoutc = 0
 
 
-            if event.key == pygame.K_KP_MULTIPLY:
-            #    # Timer auf unendlich lange setzen
-                if t1s == True: t1inf = not t1inf
-                if t2s == True: t2inf = not t2inf
-                if t3s == True: t3inf = not t3inf
-                if t4s == True: t4inf = not t4inf
-                if t5s == True: t5inf = not t5inf
-                if t6s == True: t6inf = not t6inf
-                if t7s == True: t7inf = not t7inf
-                if t8s == True: t8inf = not t8inf
-                if t9s == True: t9inf = not t9inf
-
 # sollte ein Timer worden selektiert sein, dann das Editierflag tts setzen
     if t1s or t2s or t3s or t4s or t5s or t6s or t7s or t8s or t9s:
         tts=True
@@ -184,7 +175,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (3, 1)
     if t1inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t1h, t1m)))
 
@@ -196,7 +187,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (3, 8)
     if t2inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t2h, t2m)))
 
@@ -208,7 +199,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (3, 15)
     if t3inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t3h, t3m)))
 
@@ -220,7 +211,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (2, 1)
     if t4inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t4h, t4m)))
 
@@ -232,7 +223,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (2, 8)
     if t5inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t5h, t5m)))
 
@@ -244,7 +235,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (2, 15)
     if t6inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t6h, t6m)))
 
@@ -256,7 +247,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (1, 1)
     if t7inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t7h, t7m)))
 
@@ -268,7 +259,7 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (1, 8)
     if t8inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t8h, t8m)))
 
@@ -280,74 +271,91 @@ while True:
         lcd.write_string("\xA1")
     lcd.cursor_pos = (1, 15)
     if t9inf == True:
-        lcd.write_string("inf  ")
+        lcd.write_string("infnt")
     else:
         lcd.write_string("{:%H:%M}".format(time(t9h, t9m)))
 
 # Timer 1
-    if (t1m == 0 and t1h == 0):
-         relais1.off()
-    else:
-         relais1.on()
     if t1inf == True:
          relais1.on()
+    else:
+        if (t1m == 0 and t1h == 0):
+             relais1.off()
+        else:
+             relais1.on()
 
 # Timer 2
-    if (t2m == 0 and t2h == 0):
-         relais2.off()
-    else:
-         relais2.on()
     if t2inf == True:
          relais2.on()
-# Timer 3
-    if (t3m == 0 and t3h == 0):
-         relais3.off()
     else:
-         relais3.on()
+        if (t2m == 0 and t2h == 0):
+             relais2.off()
+        else:
+             relais2.on()
+
+# Timer 3
     if t3inf == True:
          relais3.on()
-# Timer 4
-    if (t4m == 0 and t4h == 0):
-         relais4.off()
     else:
-         relais4.on()
+        if (t3m == 0 and t3h == 0):
+             relais3.off()
+        else:
+             relais3.on()
+
+# Timer 4
     if t4inf == True:
          relais4.on()
-# Timer 5
-    if (t5m == 0 and t5h == 0):
-         relais5.off()
     else:
-         relais5.on()
+        if (t4m == 0 and t4h == 0):
+             relais4.off()
+        else:
+             relais4.on()
+
+# Timer 5
     if t5inf == True:
          relais5.on()
-# Timer 6
-    if (t6m == 0 and t6h == 0):
-         relais6.off()
     else:
-         relais6.on()
+        if (t5m == 0 and t5h == 0):
+             relais5.off()
+        else:
+             relais5.on()
+
+# Timer 6
     if t6inf == True:
          relais6.on()
-# Timer 7
-    if (t7m == 0 and t7h == 0):
-         relais7.off()
     else:
-         relais7.on()
+        if (t6m == 0 and t6h == 0):
+             relais6.off()
+        else:
+             relais6.on()
+
+# Timer 7
     if t7inf == True:
          relais7.on()
-# Timer 8
-    if (t8m == 0 and t8h == 0):
-         relais8.off()
     else:
-         relais8.on()
+        if (t7m == 0 and t7h == 0):
+             relais7.off()
+        else:
+             relais7.on()
+
+# Timer 8
     if t8inf == True:
          relais8.on()
-# Timer 9
-    if (t9m == 0 and t9h == 0):
-         relais9.off()
     else:
-         relais9.on()
+        if (t8m == 0 and t8h == 0):
+             relais8.off()
+        else:
+             relais8.on()
+
+# Timer 9
     if t9inf == True:
          relais9.on()
+    else:
+        if (t9m == 0 and t9h == 0):
+             relais9.off()
+        else:
+             relais9.on()
+
 # generiere Minutenevent
     minn = now.minute 
     if (minn != mino):     # falls unterschiedlich -> Minutenevent
